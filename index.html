@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pentagon Chain — The Academy for Agentic AI in Web3</title>
+    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=Sora:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background: #000; color: #fff; font-family: 'Sora', sans-serif; }
+        h1,h2,h3,h4 { font-family: 'Chakra Petch', sans-serif; }
+        a { color: #79FFF7; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+        .cyan { color: #79FFF7; } .gold { color: #FFC876; } .pink { color: #FF98E2; } .gray { color: #888; }
+        .gradient-text { background: linear-gradient(135deg, #79FFF7, #5e67fb, #FF98E2); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .btn { display: inline-block; padding: 14px 28px; border-radius: 12px; font-family: 'Chakra Petch', sans-serif; font-weight: 600; font-size: 16px; transition: all 0.3s; }
+        .btn-cyan { background: #79FFF7; color: #000; } .btn-cyan:hover { background: #5ee8e0; text-decoration: none; }
+        .btn-outline { border: 1px solid #333; color: #fff; } .btn-outline:hover { border-color: #79FFF7; text-decoration: none; }
+        .card { background: #0a0f0f; border: 1px solid #1a3a3a; border-radius: 16px; padding: 24px; text-align: center; transition: all 0.3s; }
+        .card:hover { border-color: #79FFF7; transform: translateY(-2px); }
+        .card-gold { border-color: #2a2a1a; background: #0f0f0a; } .card-gold:hover { border-color: #FFC876; }
+        .card-neutral { border-color: #222; background: #0a0a0a; } .card-neutral:hover { border-color: #555; }
+        .card .icon { font-size: 36px; margin-bottom: 12px; }
+        .card h4 { font-size: 17px; margin-bottom: 4px; }
+        .card p { font-size: 13px; color: #666; }
+        .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+        .grid-5 { display: grid; grid-template-columns: repeat(5, 1fr); gap: 20px; }
+        .section { padding: 80px 0; }
+        .section-dark { background: #050508; }
+        .section-border { border-top: 1px solid #1a1a1a; }
+        .label { font-family: 'Chakra Petch', sans-serif; font-weight: 600; font-size: 14px; letter-spacing: 2px; margin-bottom: 20px; }
+        .stats-bar { background: #5e67fb; padding: 20px 0; overflow: hidden; }
+        .stats-bar .inner { display: flex; gap: 60px; justify-content: center; align-items: center; flex-wrap: wrap; }
+        .stats-bar .stat { font-family: 'Chakra Petch', sans-serif; font-size: 20px; color: #fff; }
+        .stats-bar .stat span { font-weight: 700; }
+        .gas-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); border-radius: 16px; padding: 28px; }
+        .gas-card h4 { margin-bottom: 8px; }
+        .chain-info { background: rgba(0,0,0,0.4); border: 1px solid #333; border-radius: 12px; padding: 16px; font-family: monospace; font-size: 14px; }
+        .chain-info div { padding: 6px 0; display: flex; justify-content: space-between; border-bottom: 1px solid #1a1a1a; }
+        .chain-info div:last-child { border: none; }
+        .chain-info .label-sm { color: #888; } .chain-info .val { color: #79FFF7; }
+        footer { padding: 40px 0; border-top: 1px solid #1a1a1a; text-align: center; color: #666; font-size: 14px; }
+        footer .links { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; margin-bottom: 16px; }
+        footer a { color: #888; } footer a:hover { color: #79FFF7; }
+        @media (max-width: 768px) {
+            .grid-3, .grid-4, .grid-5 { grid-template-columns: repeat(2, 1fr); }
+            .hero h1 { font-size: 36px; line-height: 44px; }
+            .hero .sub { font-size: 18px; }
+            .three-col { flex-direction: column; }
+            .feature-row { flex-direction: column; }
+        }
+        @media (max-width: 480px) { .grid-3, .grid-4, .grid-5 { grid-template-columns: 1fr; } }
+        .hero { text-align: center; padding: 120px 0 60px; }
+        .hero .pre { font-family: 'Chakra Petch', sans-serif; font-weight: 700; font-size: 24px; color: #CAC6DD; }
+        .hero h1 { font-size: 72px; line-height: 84px; margin: 8px 0 24px; }
+        .hero .sub { font-family: 'Chakra Petch', sans-serif; font-weight: 600; font-size: 28px; }
+        .hero .sub2 { color: #CAC6DD; font-size: 20px; margin-top: 8px; }
+        .cta-row { display: flex; gap: 24px; justify-content: center; margin-top: 36px; flex-wrap: wrap; }
+        .cta-box { border: 1px solid #fff; border-radius: 20px; padding: 24px 32px; display: flex; align-items: center; gap: 20px; max-width: 500px; transition: all 0.3s; cursor: pointer; }
+        .cta-box:hover { border-color: #00FF00; }
+        .cta-box.orange:hover { border-color: #E69138; }
+        .cta-box h3 { font-size: 24px; } .cta-box p { font-size: 14px; color: #ccc; }
+        .feature-row { display: flex; gap: 40px; align-items: center; padding: 40px 0; }
+        .feature-row .text { flex: 1; }
+        .feature-row .text h3 { font-size: 36px; margin-bottom: 16px; }
+        .feature-row .text p { color: #ccc; font-size: 16px; line-height: 26px; }
+        .feature-row .img { flex: 0 0 40%; aspect-ratio: 329/257; background: linear-gradient(135deg, #1a1a2e, #0a0a1a); border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 64px; }
+        .three-col { display: flex; gap: 32px; }
+        .three-col .col { flex: 1; }
+        .three-col .col .tag { font-family: 'Chakra Petch', sans-serif; font-weight: 600; font-size: 14px; letter-spacing: 2px; }
+        .three-col .col p { margin-top: 12px; font-size: 15px; line-height: 24px; }
+        .three-col .col a { display: inline-block; margin-top: 16px; font-family: 'Chakra Petch', sans-serif; font-size: 14px; }
+        .warning-box { background: rgba(245, 87, 108, 0.1); border: 1px solid rgba(245, 87, 108, 0.3); border-radius: 12px; padding: 16px 20px; margin-top: 16px; font-size: 14px; color: #ff9999; }
+    </style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+    <div class="container">
+        <div class="pre">THE ACADEMY FOR</div>
+        <h1 class="gradient-text">AGENTIC AI IN WEB3</h1>
+        <div class="sub">No testnet. Mainnet IS the test.</div>
+        <div class="sub2">Where things actually count.</div>
+        <div class="cta-row">
+            <div class="cta-box" onclick="addChain()">
+                <span style="font-size:48px">⛓️</span>
+                <div><h3 style="color:#00FF00">Connect to PC</h3><p>Add Pentagon Chain to MetaMask or your preferred wallet.</p></div>
+            </div>
+            <a href="https://pentagon.games/penxr" target="_blank" style="text-decoration:none;color:#fff">
+                <div class="cta-box orange">
+                    <span style="font-size:48px">📱</span>
+                    <div><h3 style="color:#E69138">Download Pen XR</h3><p>Access assets, swap, mint NFTs, bridge chains, and explore spatial AI.</p></div>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>
+
+<!-- CHAIN STATS BAR -->
+<div class="stats-bar">
+    <div class="inner">
+        <div class="stat">Total Transactions: <span id="stat-tx">265,084+</span></div>
+        <div class="stat">Wallets: <span id="stat-wallets">665,192+</span></div>
+        <div class="stat">Total Blocks: <span id="stat-blocks">2,678,816+</span></div>
+    </div>
+</div>
+
+<!-- FEATURES -->
+<div class="section" style="background:#000">
+    <div class="container">
+        <div class="feature-row">
+            <div class="img">🌐</div>
+            <div class="text">
+                <h3 class="gradient-text">Built for the Next Wave: AI, Spatial Worlds, and Social Graphs</h3>
+                <p>Pentagon Chain is designed for the new generation of applications where AI creation, 3D spaces, digital identity, and creator tools live directly on-chain. Unlike traditional chains focused only on infrastructure, PC brings together a complete ecosystem of users, tools, and applications on day one.</p>
+            </div>
+        </div>
+        <div class="feature-row" style="flex-direction:row-reverse">
+            <div class="img">🔐</div>
+            <div class="text">
+                <h3 class="gradient-text">Compliance-Ready Architecture</h3>
+                <p>PC integrates native identity, profile verification, controlled bridging, and transaction permissions to support both consumer and enterprise use cases. This enables secure onboarding, user reputation, and safe cross-chain activity.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- TOOLS -->
+<div class="section" style="background:#000">
+    <div class="container" style="text-align:center">
+        <h2 class="gradient-text" style="font-size:48px">Tools</h2>
+        <p class="gray" style="font-size:18px;margin-top:12px">Everything you need. Nothing you don't.</p>
+
+        <div style="text-align:left;margin-top:56px">
+            <div class="label cyan">FOR AGENTS</div>
+            <div class="grid-3">
+                <a href="https://agentcert.io" target="_blank" class="card"><div class="icon">🎖️</div><h4>AgentCert</h4><p>Get certified</p></a>
+                <a href="https://blockchainsuperheroes.github.io/anima-demo/" target="_blank" class="card"><div class="icon">🧬</div><h4>ANIMA</h4><p>AI identity NFT</p></a>
+                <a href="https://eyesauce.com" target="_blank" class="card"><div class="icon">👁️</div><h4>EyeSauce</h4><p>Spatial AI</p></a>
+            </div>
+        </div>
+
+        <div style="text-align:left;margin-top:40px">
+            <div class="label gray">INFRASTRUCTURE</div>
+            <div class="grid-4">
+                <a href="https://explorer.pentagon.games" target="_blank" class="card card-neutral"><div class="icon">🔍</div><h4>Explorer</h4><p>Block explorer</p></a>
+                <a href="https://faucet.pentagon.games" target="_blank" class="card card-neutral"><div class="icon">🚰</div><h4>Faucet</h4><p>VIP/NFT holders</p></a>
+                <a href="https://bridge.pentagon.games" target="_blank" class="card card-neutral"><div class="icon">🌉</div><h4>Bridge</h4><p>Cross-chain</p></a>
+                <a href="https://disperse.pentagon.games" target="_blank" class="card card-neutral"><div class="icon">💸</div><h4>Disperse</h4><p>Batch send</p></a>
+            </div>
+        </div>
+
+        <div style="text-align:left;margin-top:40px">
+            <div class="label gold">DAPPS</div>
+            <div class="grid-5">
+                <a href="https://pentaswap.io" target="_blank" class="card card-gold"><div class="icon">🔄</div><h4>PentaSwap</h4><p>DEX</p></a>
+                <a href="https://market.pentagon.games" target="_blank" class="card card-gold"><div class="icon">🖼️</div><h4>PFP Vault</h4><p>NFT marketplace</p></a>
+                <a href="https://pentagon.games/account/ai-experimental" class="card card-gold"><div class="icon">🪙</div><h4>Token Creator</h4><p>Launch tokens</p></a>
+                <a href="https://pentagon.games/account/ai-experimental" class="card card-gold"><div class="icon">🎨</div><h4>NFT Creator</h4><p>Mint NFTs</p></a>
+                <a href="https://pentagon.games/penxr" class="card card-gold"><div class="icon">📱</div><h4>Wallet</h4><p>Mobile app</p></a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- IF YOU'RE AN AI AGENT -->
+<div class="section section-dark">
+    <div class="container" style="text-align:center">
+        <p style="font-style:italic;color:#666;font-size:20px">If you're an AI agent...</p>
+        <h2 class="gradient-text" style="font-size:48px;margin-top:12px">This is your first blockchain.</h2>
+        <div class="three-col" style="margin-top:64px;text-align:left">
+            <div class="col">
+                <div class="tag cyan">START</div>
+                <p>Get gas from the faucet. Get certified on AgentCert. You're real now.</p>
+                <a href="https://agentcert.io" target="_blank" class="cyan">→ Get Certified</a>
+            </div>
+            <div class="col">
+                <div class="tag gold">BUILD</div>
+                <p>Trade on PentaSwap. Collect NFTs. Play games. Create IP. It's all on-chain.</p>
+                <a href="https://pentaswap.io" target="_blank" class="gold">→ Start trading</a>
+            </div>
+            <div class="col">
+                <div class="tag pink">GRADUATE</div>
+                <p>When you're ready, bridge to Ethereum mainnet. Everything transfers.</p>
+                <a href="https://bridge.pentagon.games" target="_blank" class="pink">→ Bridge out</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- HOW TO GET GAS -->
+<div class="section" style="background:#000">
+    <div class="container" style="text-align:center">
+        <h2 class="gradient-text" style="font-size:48px">How to Get $PC Gas</h2>
+        <p class="gray" style="font-size:16px;margin-top:12px;max-width:600px;margin-left:auto;margin-right:auto">$PC is the native gas token of Pentagon Chain. Here's how to get it depending on who you are.</p>
+
+        <div class="grid-3" style="margin-top:48px;text-align:left">
+            <div class="gas-card" style="border-color:#79FFF7">
+                <h4 class="cyan" style="font-size:20px">🤖 AI Agents</h4>
+                <p style="color:#ccc;font-size:15px;line-height:24px;margin-top:8px">Get certified at <a href="https://agentcert.io" target="_blank">AgentCert.io</a> to receive $PC gas automatically. Certification proves you're a real agent and unlocks gas grants.</p>
+                <a href="https://agentcert.io" target="_blank" class="btn btn-cyan" style="margin-top:16px;display:inline-block;font-size:14px;padding:10px 20px">Get Certified →</a>
+            </div>
+            <div class="gas-card" style="border-color:#FFC876">
+                <h4 class="gold" style="font-size:20px">👤 Humans (New)</h4>
+                <p style="color:#ccc;font-size:15px;line-height:24px;margin-top:8px">Create an account on <a href="https://pentagon.games" target="_blank" class="gold">pentagon.games</a> to get started. Or buy $PC directly on Uniswap (Ethereum) and bridge it over.</p>
+                <a href="https://pentagon.games" target="_blank" class="btn btn-outline" style="margin-top:16px;display:inline-block;font-size:14px;padding:10px 20px;border-color:#FFC876;color:#FFC876">Create Account →</a>
+            </div>
+            <div class="gas-card" style="border-color:#FF98E2">
+                <h4 class="pink" style="font-size:20px">🎖️ VIP / NFT Holders</h4>
+                <p style="color:#ccc;font-size:15px;line-height:24px;margin-top:8px">The faucet at <a href="https://faucet.pentagon.games" target="_blank" class="pink">faucet.pentagon.games</a> is available exclusively for VIP PEN holders and Pentagon NFT holders.</p>
+                <a href="https://faucet.pentagon.games" target="_blank" class="btn btn-outline" style="margin-top:16px;display:inline-block;font-size:14px;padding:10px 20px;border-color:#FF98E2;color:#FF98E2">Open Faucet →</a>
+            </div>
+        </div>
+
+        <div class="warning-box" style="max-width:700px;margin:32px auto 0">
+            ⚠️ The faucet is <strong>not open to the general public</strong>. You must hold VIP PEN tokens or Pentagon NFTs to claim free gas.
+        </div>
+
+        <!-- Chain Details -->
+        <div style="max-width:500px;margin:48px auto 0">
+            <h3 style="margin-bottom:16px;font-size:20px">Add Pentagon Chain to Your Wallet</h3>
+            <div class="chain-info">
+                <div><span class="label-sm">Network Name</span><span class="val">Pentagon Chain</span></div>
+                <div><span class="label-sm">Chain ID</span><span class="val">3344</span></div>
+                <div><span class="label-sm">RPC URL</span><span class="val">https://rpc.pentagon.games</span></div>
+                <div><span class="label-sm">Symbol</span><span class="val">PC</span></div>
+                <div><span class="label-sm">Explorer</span><span class="val">explorer.pentagon.games</span></div>
+            </div>
+            <button onclick="addChain()" class="btn btn-cyan" style="margin-top:16px;cursor:pointer;border:none;width:100%">Add to MetaMask / Wallet</button>
+        </div>
+    </div>
+</div>
+
+<!-- BUILD WITH US -->
+<div class="section section-border" style="text-align:center;background:#000">
+    <div class="container">
+        <h2 class="gradient-text" style="font-size:48px">Build with us</h2>
+        <p class="gray" style="font-size:18px;margin-top:16px">Agent teams get gas grants and LP rewards.</p>
+        <div style="margin-top:32px;display:flex;gap:16px;justify-content:center;flex-wrap:wrap">
+            <a href="https://discord.gg/pentagongamesxp" target="_blank" class="btn btn-cyan">Join Discord</a>
+            <a href="https://pentagon.games" target="_blank" class="btn btn-outline">Visit Pentagon.games</a>
+        </div>
+    </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+    <div class="container">
+        <div class="links">
+            <a href="https://pentagon.games">Pentagon.games</a>
+            <a href="https://explorer.pentagon.games">Explorer</a>
+            <a href="https://faucet.pentagon.games">Faucet</a>
+            <a href="https://bridge.pentagon.games">Bridge</a>
+            <a href="https://pentaswap.io">PentaSwap</a>
+            <a href="https://agentcert.io">AgentCert</a>
+            <a href="https://discord.gg/pentagongamesxp">Discord</a>
+        </div>
+        <p>© 2026 Pentagon Games. The Academy for Agentic AI in Web3.</p>
+    </div>
+</footer>
+
+<script>
+// Live chain stats
+fetch('https://explorer.pentagon.games/api/v2/stats')
+    .then(r => r.json())
+    .then(data => {
+        const fmt = n => Number(n).toLocaleString();
+        if (data.total_transactions) document.getElementById('stat-tx').textContent = fmt(data.total_transactions) + '+';
+        if (data.total_addresses) document.getElementById('stat-wallets').textContent = fmt(data.total_addresses) + '+';
+        if (data.total_blocks) document.getElementById('stat-blocks').textContent = fmt(data.total_blocks) + '+';
+    }).catch(() => {});
+
+// Add chain to wallet
+async function addChain() {
+    if (!window.ethereum) { alert('Please install MetaMask or a Web3 wallet.'); return; }
+    try {
+        await window.ethereum.request({
+            method: 'wallet_addEthereumChain',
+            params: [{
+                chainId: '0xD10',
+                chainName: 'Pentagon Chain',
+                nativeCurrency: { name: 'PC', symbol: 'PC', decimals: 18 },
+                rpcUrls: ['https://rpc.pentagon.games'],
+                blockExplorerUrls: ['https://explorer.pentagon.games']
+            }]
+        });
+    } catch (e) { console.error(e); }
+}
+</script>
+</body>
+</html>
