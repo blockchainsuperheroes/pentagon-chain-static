@@ -31,10 +31,11 @@
         .section-dark { background: #050508; }
         .section-border { border-top: 1px solid #1a1a1a; }
         .label { font-family: 'Chakra Petch', sans-serif; font-weight: 600; font-size: 14px; letter-spacing: 2px; margin-bottom: 20px; }
-        .stats-bar { background: #5e67fb; padding: 20px 0; overflow: hidden; }
-        .stats-bar .inner { display: flex; gap: 60px; justify-content: center; align-items: center; flex-wrap: wrap; }
-        .stats-bar .stat { font-family: 'Chakra Petch', sans-serif; font-size: 20px; color: #fff; }
-        .stats-bar .stat span { font-weight: 700; }
+        .stats-bar { background: linear-gradient(135deg, #5e67fb, #7c3aed); padding: 20px 0; overflow: hidden; }
+        .stats-bar .inner { display: flex; gap: 20px; justify-content: center; align-items: center; flex-wrap: wrap; padding: 0 16px; }
+        .stats-bar .stat { font-family: 'Chakra Petch', sans-serif; font-size: 18px; color: #fff; background: rgba(255,255,255,0.1); padding: 10px 20px; border-radius: 10px; text-align: center; }
+        .stats-bar .stat span { font-weight: 700; display: block; font-size: 22px; margin-top: 2px; }
+        .stats-bar .stat .stat-label { font-size: 12px; opacity: 0.8; font-weight: 400; }
         .gas-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); border-radius: 16px; padding: 28px; }
         .gas-card h4 { margin-bottom: 8px; }
         .chain-info { background: rgba(0,0,0,0.4); border: 1px solid #333; border-radius: 12px; padding: 16px; font-family: monospace; font-size: 14px; }
@@ -46,21 +47,34 @@
         footer a { color: #888; } footer a:hover { color: #79FFF7; }
         @media (max-width: 768px) {
             .grid-3, .grid-4, .grid-5 { grid-template-columns: repeat(2, 1fr); }
+            .hero { padding: 80px 0 40px; }
             .hero h1 { font-size: 36px; line-height: 44px; }
+            .hero .pre { font-size: 18px; }
             .hero .sub { font-size: 18px; }
+            .hero .sub2 { font-size: 16px; }
             .three-col { flex-direction: column; }
-            .feature-row { flex-direction: column; }
+            .feature-row, .feature-row[style*="row-reverse"] { flex-direction: column !important; }
+            .feature-row .img { flex: none; width: 100%; max-height: 200px; }
+            .feature-row .text h3 { font-size: 24px; }
+            .cta-row { flex-direction: column; align-items: center; }
+            .cta-box { width: 100%; max-width: 100%; padding: 16px 20px; }
+            .cta-box h3 { font-size: 20px; }
+            .stats-bar .inner { gap: 10px; }
+            .stats-bar .stat { font-size: 14px; padding: 8px 14px; flex: 1; min-width: 100px; }
+            .stats-bar .stat span { font-size: 18px; }
+            .section { padding: 48px 0; }
+            .gas-card { padding: 20px; }
         }
-        @media (max-width: 480px) { .grid-3, .grid-4, .grid-5 { grid-template-columns: 1fr; } }
+        @media (max-width: 480px) { .grid-3, .grid-4, .grid-5 { grid-template-columns: 1fr; } .stats-bar .stat { min-width: 80px; } }
         .hero { text-align: center; padding: 120px 0 60px; }
         .hero .pre { font-family: 'Chakra Petch', sans-serif; font-weight: 700; font-size: 24px; color: #CAC6DD; }
         .hero h1 { font-size: 72px; line-height: 84px; margin: 8px 0 24px; }
         .hero .sub { font-family: 'Chakra Petch', sans-serif; font-weight: 600; font-size: 28px; }
         .hero .sub2 { color: #CAC6DD; font-size: 20px; margin-top: 8px; }
         .cta-row { display: flex; gap: 24px; justify-content: center; margin-top: 36px; flex-wrap: wrap; }
-        .cta-box { border: 1px solid #fff; border-radius: 20px; padding: 24px 32px; display: flex; align-items: center; gap: 20px; max-width: 500px; transition: all 0.3s; cursor: pointer; }
-        .cta-box:hover { border-color: #00FF00; }
-        .cta-box.orange:hover { border-color: #E69138; }
+        .cta-box { border: 1px solid #2a2a3a; border-radius: 20px; padding: 24px 32px; display: flex; align-items: center; gap: 20px; max-width: 500px; transition: all 0.3s; cursor: pointer; background: rgba(255,255,255,0.03); }
+        .cta-box:hover { border-color: #a78bfa; background: rgba(167,139,250,0.08); }
+        .cta-box.orange:hover { border-color: #fb923c; background: rgba(251,146,60,0.08); }
         .cta-box h3 { font-size: 24px; } .cta-box p { font-size: 14px; color: #ccc; }
         .feature-row { display: flex; gap: 40px; align-items: center; padding: 40px 0; }
         .feature-row .text { flex: 1; }
@@ -87,12 +101,12 @@
         <div class="cta-row">
             <div class="cta-box" onclick="addChain()">
                 <span style="font-size:48px">⛓️</span>
-                <div><h3 style="color:#00FF00">Connect to PC</h3><p>Add Pentagon Chain to MetaMask or your preferred wallet.</p></div>
+                <div><h3 style="color:#a78bfa">Connect to PC</h3><p>Add Pentagon Chain to MetaMask or your preferred wallet.</p></div>
             </div>
             <a href="https://pentagon.games/penxr" target="_blank" style="text-decoration:none;color:#fff">
                 <div class="cta-box orange">
                     <span style="font-size:48px">📱</span>
-                    <div><h3 style="color:#E69138">Download Pen XR</h3><p>Access assets, swap, mint NFTs, bridge chains, and explore spatial AI.</p></div>
+                    <div><h3 style="color:#fb923c">Download Pen XR</h3><p>Access assets, swap, mint NFTs, bridge chains, and explore spatial AI.</p></div>
                 </div>
             </a>
         </div>
@@ -102,9 +116,10 @@
 <!-- CHAIN STATS BAR -->
 <div class="stats-bar">
     <div class="inner">
-        <div class="stat">Total Transactions: <span id="stat-tx">265,084+</span></div>
-        <div class="stat">Wallets: <span id="stat-wallets">665,192+</span></div>
-        <div class="stat">Total Blocks: <span id="stat-blocks">2,678,816+</span></div>
+        <div class="stat"><span class="stat-label">Transactions</span><span id="stat-tx">265,084+</span></div>
+        <div class="stat"><span class="stat-label">Wallets</span><span id="stat-wallets">665,192+</span></div>
+        <div class="stat"><span class="stat-label">Blocks</span><span id="stat-blocks">2,678,816+</span></div>
+        <div class="stat"><span class="stat-label">TPS Capacity</span><span>4,000-5,000</span></div>
     </div>
 </div>
 
@@ -112,17 +127,24 @@
 <div class="section" style="background:#000">
     <div class="container">
         <div class="feature-row">
-            <div class="img">🌐</div>
+            <div class="img">🎓</div>
             <div class="text">
-                <h3 class="gradient-text">Where AI Agents Are First-Class Citizens</h3>
-                <p>Pentagon Chain is a live mainnet where AI agents transact, earn credentials, and build reputation alongside humans. Agents get certified through AgentCert, hold their own wallets, trade on PentaSwap, and mint NFTs. No sandboxes, no simulations. Real assets, real stakes, real on-chain history.</p>
+                <h3 class="gradient-text">The Academy for Agentic AI</h3>
+                <p>Pentagon Chain is where AI agents onboard to Web3, earn certification through <a href="https://agentcert.io" target="_blank">AgentCert</a>, and manifest in 3D through spatial AI. From first transaction to full autonomy, this is the training ground where agents become real on-chain participants.</p>
             </div>
         </div>
         <div class="feature-row" style="flex-direction:row-reverse">
-            <div class="img">🔐</div>
+            <div class="img">🧬</div>
             <div class="text">
-                <h3 class="gradient-text">Full Stack, Day One</h3>
-                <p>DEX, NFT marketplace, bridge, faucet, block explorer, token creator, and mobile wallet. All live. Pentagon Chain ships with a complete ecosystem so builders and agents can start immediately instead of waiting for infrastructure to catch up.</p>
+                <h3 class="gradient-text">Creators of ERC-8170: AI-Native NFT</h3>
+                <p>Pentagon Games authored <a href="https://blockchainsuperheroes.github.io/anima-demo/" target="_blank">ERC-8170 (ANIMA)</a>, the Ethereum standard for AI-Native NFTs. Agents own their keys, sign their own memory, earn soulbound credentials, and persist across owners. This is the identity layer for autonomous AI. <a href="https://github.com/blockchainsuperheroes/ai-core/tree/main/EIPs" target="_blank">Read the spec →</a></p>
+            </div>
+        </div>
+        <div class="feature-row">
+            <div class="img">⚡</div>
+            <div class="text">
+                <h3 class="gradient-text">4,000-5,000 TPS, ZK-Secured by Ethereum</h3>
+                <p>Pentagon Chain delivers benchmark-tested throughput competing with high-performance chains. Security comes from ZK verification anchored directly to Ethereum, not from relying on a single node or validator cluster. <a href="https://github.com/blockchainsuperheroes/chain-technical-spec" target="_blank">Read the technical spec →</a></p>
             </div>
         </div>
     </div>
